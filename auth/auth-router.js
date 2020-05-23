@@ -1,49 +1,66 @@
-const router = require("express").Router();
-const bcrypt = require("bcrypt");
+const express = require("express");
+const users = require("../users/users-model");
+const router = express.Router();
 const jwt = require("jsonwebtoken");
-const secrets = require("../config/secret");
-const Users = require("../users/users-model");
+const secrets = require("./secret");
 
+const bcrypt = require("bcryptjs");
 router.post("/register", (req, res) => {
   let user = req.body;
   const hash = bcrypt.hashSync(user.password, 10);
   user.password = hash;
+  users
+    .add(user)
+    .then((user) => {
+      const token = genToken(user);
 
-  Users.add(user)
-    .then((saved) => {
-      const token = genToken(saved);
-      res.status(201).json({ created_user: saved, token: token });
+      res.status(201).json({
+        id: user.id,
+        instructor: user.instructor ? true : false,
+        token,
+      });
     })
-    .catch((error) => {
-      res.status(500).json(error);
+    .catch((err) => {
+      res.status(500).json({ message: "internal error adding user", err });
     });
 });
-router.post("/login", (res, req) => {
-  let { username, password } = req.body;
-  Users.findBy({ username })
-    .first()
-    .then((user) => {
-      if (user && bcrypt.compareSync(password, user.password)) {
-        const token = genToken(user);
-        res.status(200).json({ username: user.username, token: token });
-      } else {
-        res.status(401).json({ message: "Invalid Credentials" });
-      }
-    })
-    .catch((error) => {
-      res.status(500).json(error);
-    });
+
+router.post("/login", (req, res) => {
+  const { password, username } = req.body;
+  if (username && password) {
+    users
+      .findByUser(username)
+      .then((user) => {
+        if (user && bcrypt.compareSync(password, user.password)) {
+          const token = genToken(user);
+          res.status(200).json({
+            id: user.id,
+            instructor: user.instructor ? true : false,
+            token: token,
+          });
+        } else {
+          res.status(401).json({ message: "invalid credentials" });
+        }
+      })
+      .catch((err) => {
+        res.status(500).json({ message: "internal error logging in", err });
+      });
+  } else {
+    res.status(400).json({ message: "username and password required" });
+  }
 });
 
 function genToken(user) {
   const payload = {
-    userid: user.id,
+    subject: user.id,
     username: user.username,
-    roles: ["STUDENT"],
+    instructor: user.instructor,
   };
-  const options = { expiresIn: "1hr" };
+  const options = { expiresIn: "1d" };
   const token = jwt.sign(payload, secrets.jwtSecret, options);
   return token;
 }
+
+module.exports = router;
 
 module.exports = router;
