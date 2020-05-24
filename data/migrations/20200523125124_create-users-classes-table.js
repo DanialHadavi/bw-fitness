@@ -1,23 +1,25 @@
-exports.up = function (knex, Promise) {
-  return knex.schema.createTable("users_classes", (tbl) => {
-    tbl.increments();
-    tbl
-      .integer("user_id")
+exports.up = function (knex) {
+  return knex.schema.createTable("reservations", (table) => {
+    table.primary(["userId", "classId"]);
+    table
+      .integer("userId")
       .unsigned()
+      .notNullable()
       .references("id")
       .inTable("users")
       .onUpdate("CASCADE")
-      .onDelete("RESTRICT");
-    tbl
-      .integer("class_id")
+      .onDelete("CASCADE");
+    table
+      .integer("classId")
       .unsigned()
+      .notNullable()
       .references("id")
       .inTable("classes")
       .onUpdate("CASCADE")
-      .onDelete("RESTRICT");
+      .onDelete("CASCADE");
   });
 };
 
-exports.down = function (knex, Promise) {
-  return knex.schema.dropTableIfExists("users_classes");
+exports.down = function (knex) {
+  return knex.schema.dropTableIfExists("reservations");
 };

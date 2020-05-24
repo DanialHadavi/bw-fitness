@@ -1,27 +1,28 @@
-exports.up = function (knex, Promise) {
-  return knex.schema.createTable("classes", (tbl) => {
-    tbl.increments();
-    tbl.string("name").notNullable();
-    tbl.string("type");
-    tbl.string("intensity");
-    tbl.string("duration");
-    tbl.string("start_time").notNullable();
-    tbl.string("schedule").notNullable();
-    tbl.string("location").notNullable();
-    tbl.integer("currently_registered");
-    tbl.integer("class_size").defaultTo(15);
-    tbl.string("image");
-    tbl
-      .integer("instructor_id")
+exports.up = function (knex) {
+  return knex.schema.createTable("classes", (table) => {
+    table.increments();
+    table.string("name").notNullable();
+    table.string("type").notNullable();
+    table.string("date").notNullable();
+    table.string("startTime").notNullable();
+    table.string("duration").unsigned().notNullable();
+    table.string("intensityLevel").notNullable();
+    table.string("location").notNullable();
+    table.string("description", 256).notNullable();
+    table.integer("registeredAttendees").unsigned().defaultTo(0);
+    table.integer("maxClassSize").unsigned().notNullable().defaultTo(20);
+    table.string("image");
+    table
+      .integer("instructorId")
       .unsigned()
+      .notNullable()
       .references("id")
       .inTable("users")
       .onUpdate("CASCADE")
-      .onDelete("RESTRICT")
-      .notNullable();
+      .onDelete("CASCADE");
   });
 };
 
-exports.down = function (knex, Promise) {
+exports.down = function (knex) {
   return knex.schema.dropTableIfExists("classes");
 };
