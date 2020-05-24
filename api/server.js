@@ -26,5 +26,7 @@ server.use(cors());
 server.use("/api/auth", validateBody, validateEmail, validateUser, authRouter);
 server.use("/api/instructor", restricted, isInstructor, instructorRouter);
 server.use("/api/client", restricted, isClient, clientRouter);
-
+server.get("/", (req, res) => {
+  res.json({ server: "Well, Hello there. I'm up!" });
+});
 module.exports = server;
