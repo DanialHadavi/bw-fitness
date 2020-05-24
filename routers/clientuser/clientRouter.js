@@ -20,7 +20,7 @@ router.get("/class", async (req, res) => {
 router.get("/reservations", async (req, res) => {
   try {
     const classes = await Users.getreservations(req.decodedToken.subject);
-    // let us modify each returned object to have an instructor key formed from the firstName and lastName keys
+    // adds instructorName who created the class
     classes.forEach((classe) => {
       classe.instructor = classe.firstName + " " + classe.lastName;
       delete classe.firstName;
