@@ -68,6 +68,7 @@ module.exports = {
       .leftJoin("users as u", "c.instructorId", "u.id")
       .select(
         "classId",
+        "name",
         "type",
         "date",
         "startTime",
