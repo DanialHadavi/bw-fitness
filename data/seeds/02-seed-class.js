@@ -14,7 +14,7 @@ exports.seed = function (knex, Promise) {
           intensityLevel: "medium",
           description:
             "With constantly varied, high-intensity functional movements, CrossFit is a training philosophy that coaches people of all shapes and sizes to improve their physical well-being and cardiovascular fitness in a hardcore yet accepting and encouraging environment.",
-          duration: "1 month",
+          duration: "60 minutes",
           instructorId: 1,
           maxClassSize: 20,
         },
@@ -27,7 +27,7 @@ exports.seed = function (knex, Promise) {
           intensityLevel: "hard",
           description:
             "Tai chi is an ancient Chinese tradition that, today, is practiced as a graceful form of exercise. It involves a series of movements performed in a slow, focused manner and accompanied by deep breathing.",
-          duration: "3 months",
+          duration: "60 minutes",
           instructorId: 3,
           maxClassSize: 20,
         },
@@ -40,7 +40,7 @@ exports.seed = function (knex, Promise) {
           intensityLevel: "easy",
           description:
             "In this class the basic, foundational yoga postures are practiced to align, strengthen and promote flexibility in the body. Breathing techniques and meditation are also integrated. You can expect an emphasis on simplicity, repetition, and ease of movement.",
-          duration: "1 month",
+          duration: "30 minutes",
           instructorId: 1,
           maxClassSize: 20,
         },
@@ -53,7 +53,7 @@ exports.seed = function (knex, Promise) {
           intensityLevel: "easy",
           description:
             "Pilates is a method of exercise that consists of low-impact flexibility and muscular strength and endurance movements. Pilates emphasizes proper postural alignment, core strength and muscle balance.",
-          duration: "1 month",
+          duration: "45 minutes",
           instructorId: 3,
           maxClassSize: 20,
         },

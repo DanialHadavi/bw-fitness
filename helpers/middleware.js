@@ -32,7 +32,6 @@ module.exports = {
     if (
       firstName &&
       lastName &&
-      userName &&
       email &&
       password &&
       role &&
@@ -41,7 +40,7 @@ module.exports = {
       user === undefined
         ? next()
         : res.status(403).json({ message: v.alreadyInUse });
-    } else if (email || (userName && password && req.path === "/login")) {
+    } else if (email && password && req.path === "/login") {
       req.user = user;
       user && bcrypt.compareSync(password, user.password)
         ? next()
