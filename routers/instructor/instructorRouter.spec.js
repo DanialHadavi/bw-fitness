@@ -2,7 +2,7 @@ const request = require("supertest");
 const server = require("../../api/server");
 
 describe("Instructor Routes", () => {
-  describe("Fetch instructors from end points", () => {
+  describe("Cant get classes without token", () => {
     it("Should return 400", () => {
       return request(server)
         .get("/api/instructor/class")
@@ -13,7 +13,7 @@ describe("Instructor Routes", () => {
   });
 
   describe("Register instructors", () => {
-    it("Middleware working OK", () => {
+    it("Middleware is working OK", () => {
       return request(server)
         .post("/api/instructor/class")
         .expect(400)

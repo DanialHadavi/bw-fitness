@@ -47,7 +47,8 @@ module.exports = {
         "maxClassSize",
         "firstName",
         "lastName",
-        "description"
+        "description",
+        "image"
       );
   },
   findClassBy: function (filter) {
@@ -79,7 +80,8 @@ module.exports = {
         "maxClassSize",
         "firstName",
         "lastName",
-        "description"
+        "description",
+        "image"
       )
       .where("r.userId", id);
   },

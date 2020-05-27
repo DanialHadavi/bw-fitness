@@ -1,12 +1,8 @@
 require("dotenv").config();
-
-const path = require("path");
 const express = require("express");
 const helmet = require("helmet");
 const cors = require("cors");
-
 const server = express();
-
 const authRouter = require("../routers/authentication/authRouter");
 const instructorRouter = require("../routers/instructor/instructorRouter");
 const clientRouter = require("../routers/clientuser/clientRouter");

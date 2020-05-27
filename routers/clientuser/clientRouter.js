@@ -20,7 +20,7 @@ router.get("/class", async (req, res) => {
 router.get("/reservations", async (req, res) => {
   try {
     const classes = await Users.getreservations(req.decodedToken.subject);
-    // instructorName
+    // instructorName binder
     classes.forEach((classe) => {
       classe.instructor = classe.firstName + " " + classe.lastName;
       delete classe.firstName;

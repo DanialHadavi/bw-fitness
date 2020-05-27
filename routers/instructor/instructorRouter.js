@@ -29,7 +29,7 @@ router.put("/class/:id", validateBody, async (req, res) => {
   try {
     const id = req.params.id;
     const { instructorId } = await Users.findClassBy({ id }).first();
-    // let us find the class and check that the instructor is the right owner
+    //finds the class and checks that the instructor is the right owner
     if (instructorId === req.decodedToken.subject) {
       const updatedClass = await Users.editClass(req.params.id, req.body);
       res.status(200).json({ message: v.updatedEntry, updatedClass });
