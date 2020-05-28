@@ -13,7 +13,7 @@ describe("Auth Routes", () => {
     it("validateEmail middleware works", () => {
       return request(server)
         .post("/api/auth/register")
-        .send({ email: "sandra", password: "1234" })
+        .send({ email: "danial", password: "1234" })
         .expect(400)
         .expect({ message: "Not a valid email address format" });
     });
@@ -21,7 +21,7 @@ describe("Auth Routes", () => {
     it("validateUser middleware works", () => {
       return request(server)
         .post("/api/auth/register")
-        .send({ email: "sandra@gmail.com", password: "1234" })
+        .send({ email: "danial@gmail.com", password: "1234" })
         .expect(400)
         .expect({ message: "You are missing some required fields!" });
     });
@@ -30,9 +30,9 @@ describe("Auth Routes", () => {
       return request(server)
         .post("/api/auth/register")
         .send({
-          firstName: "Sandra",
-          lastName: "philips",
-          email: "karim@gmail.com",
+          firstName: "danial",
+          lastName: "hadavi",
+          email: "danial@gmail.com",
           password: "1234",
           role: "instructor",
         })
@@ -51,7 +51,7 @@ describe("Auth Routes", () => {
     it("validateEmail middleware works", () => {
       return request(server)
         .post("/api/auth/login")
-        .send({ email: "sandra", password: "1234" })
+        .send({ email: "danial", password: "1234" })
         .expect(400)
         .expect({ message: "Not a valid email address format" });
     });
@@ -59,7 +59,7 @@ describe("Auth Routes", () => {
     it("validateUser middleware works", () => {
       return request(server)
         .post("/api/auth/login")
-        .send({ email: "sandraa@gmail.com", password: "1234" })
+        .send({ email: "danial@gmail.com", password: "1234" })
         .expect(401)
         .expect({ message: "Oops! Invalid Credentials" });
     });

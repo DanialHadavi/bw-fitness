@@ -2,7 +2,7 @@ const request = require("supertest");
 const server = require("../../api/server");
 
 describe("Client Routes", () => {
-  describe("Fetch created classes from end points", () => {
+  describe("GET created classes from endpoint", () => {
     it("Should return 400", () => {
       return request(server)
         .get("/api/client/class")
@@ -12,7 +12,7 @@ describe("Client Routes", () => {
     });
   });
 
-  describe("Fetch reservations from endpoint", () => {
+  describe("GET reservations from endpoint", () => {
     it("Should return 400", () => {
       return request(server)
         .get("/api/client/reservations")
@@ -23,7 +23,7 @@ describe("Client Routes", () => {
   });
 
   describe("register reservations", () => {
-    it("middleware working okay", () => {
+    it("middleware working OK", () => {
       return request(server)
         .post("/api/client/reservations")
         .expect(400)

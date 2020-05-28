@@ -28,7 +28,7 @@ exports.seed = function (knex, Promise) {
           lastName: "test",
 
           password: bcrypt.hashSync("pass", 4),
-          email: "test@instructor.com",
+          email: "instructor2@test.com",
           role: "instructor",
         },
       ]);
