@@ -12,6 +12,7 @@ exports.up = function (knex) {
     table.integer("registeredAttendees").unsigned().defaultTo(0);
     table.integer("maxClassSize").unsigned().notNullable().defaultTo(20);
     table.string("image");
+    table.string("video");
     table
       .integer("instructorId")
       .unsigned()

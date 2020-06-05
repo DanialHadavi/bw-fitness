@@ -48,7 +48,8 @@ module.exports = {
         "firstName",
         "lastName",
         "description",
-        "image"
+        "image",
+        "video"
       );
   },
   findClassBy: function (filter) {
@@ -81,7 +82,8 @@ module.exports = {
         "firstName",
         "lastName",
         "description",
-        "image"
+        "image",
+        "video"
       )
       .where("r.userId", id);
   },
